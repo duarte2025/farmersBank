@@ -3,15 +3,27 @@ package entities
 import "github.com/google/uuid"
 
 type Account struct {
-	ID      uuid.UUID
-	Name    string
-	Balance int
+	id      uuid.UUID
+	name    string
+	balance int
 }
 
-func NewAccount(id uuid.UUID, name string, balance int) Account {
+func NewAccount(name string) Account {
 	return Account{
-		ID:      id,
-		Name:    name,
-		Balance: balance,
+		id:      uuid.New(),
+		name:    name,
+		balance: 0,
 	}
+}
+
+func (a Account) ID() string {
+	return a.id.String()
+}
+
+func (a Account) Name() string {
+	return a.name
+}
+
+func (a Account) Balance() int {
+	return a.balance
 }
